@@ -6,14 +6,12 @@ app = Flask(__name__)
 def index():
   return render_template("index.html")
 
-@app.route("/adicionar")
-def add():
-  return "<h1>Adicionar Contacto</h1>"
-
-@app.route("/adicionar", methods=["POST"])
-def save():
-  return "<h1>Contacto Adicionado</h1>"
-
+@app.route("/adicionar", methods=["GET", "POST"])
+def add_or_save():
+  if request.method == "GET":
+      return "<h1>Adicionar Contacto</h1>"
+  elif request.method == "POST":
+      return "<h1>Contacto Adicionado</h1>"
 @app.route("/editar")
 def edit():
   return "<h1>Editar Contacto</h1>"
