@@ -38,7 +38,17 @@ def editar_contacto(id):
   if request.method == "GET":
       return "<h1>Editar Contacto</h1>"
   elif request.method == "POST":
-      return "<h1>Contacto Editado</h1>"
+      nome = request.form.get("nome")
+      telefone = request.form.get("telefone")
+
+      for contacto in contactos:
+          if contacto["id"] == id:
+              contacto["nome"] = nome
+              contacto["telefone"] = telefone
+              break
+
+      guardar_contactos(contactos)
+      return f"<h1>Contacto com ID {id} editado com sucesso!</h1>"
 
 if __name__ == '__main__':
   app.run(debug=True)
