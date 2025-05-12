@@ -12,15 +12,12 @@ def add_or_save():
       return "<h1>Adicionar Contacto</h1>"
   elif request.method == "POST":
       return "<h1>Contacto Adicionado</h1>"
-@app.route("/editar")
-def edit():
-  return "<h1>Editar Contacto</h1>"
-
-@app.route("/editar", methods=["POST"])
-def update():
-  return "<h1>Contacto Editado</h1>"
-
-
+@app.route("/editar", methods=["GET", "POST"])
+def edit_or_update():
+  if request.method == "GET":
+      return "<h1>Editar Contacto</h1>"
+  elif request.method == "POST":
+      return "<h1>Contacto Editado</h1>"
 if __name__ == '__main__':
   app.run(debug=True)
 
