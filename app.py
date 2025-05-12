@@ -33,7 +33,7 @@ def adicionar_contacto():
 
     return f"<h1>Contacto Adicionado: {novo_uuid}</h1>"
 
-@app.route("/editar/<str:id>", methods=["GET", "POST"])
+@app.route("/editar/<string:id>", methods=["GET", "POST"])
 def editar_contacto(id):
   if request.method == "GET":
       return "<h1>Editar Contacto</h1>"
