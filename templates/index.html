@@ -6,6 +6,18 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>Olá Flask!</h1>
+  <h1>Meus Contactos</h1>
+
+  <a href="{{ url_for('adicionar_contacto') }}">Adicionar Contacto</a>
+
+  <ul>
+    {% for contacto in contactos %}
+      <li>
+        {{ contacto["id"] }} - {{ contacto["nome"] }}: {{ contacto["telefone"] }}
+        <br>
+        <a href="{{ url_for('editar_contacto', id=contacto['id']) }}">Editar</a>
+      </li>
+    {% endfor %}
+  </ul>
 </body>
 </html>
