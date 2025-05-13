@@ -2,4 +2,10 @@
 
 Aplicação web para gestão de contactos.
 
-## Como rodar  aplicação
+## Como rodar aplicação
+
+Para rodar a aplicação, execute o seguinte comando:
+
+```sh
+python3 app.py
+```
