@@ -9,3 +9,5 @@ Para rodar a aplicação, execute o seguinte comando:
 ```sh
 python3 app.py
 ```
+
+## Como rodar a aplicação no Docker
