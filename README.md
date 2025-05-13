@@ -11,3 +11,8 @@ python3 app.py
 ```
 
 ## Como rodar a aplicação no Docker
+
+```sh
+docker run ...
+```
+Este comando deve ser executado no terminal
