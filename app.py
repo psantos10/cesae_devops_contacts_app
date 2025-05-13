@@ -111,4 +111,4 @@ def editar_contacto(id):
       return "<h1>Contacto Editado</h1>"
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(debug=True, host='0.0.0.0')
