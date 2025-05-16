@@ -9,17 +9,17 @@
   <form action="{{ url_for('create') }}" method="POST">
     <div class="mb-3">
       <label for="name" class="form-label">Nome</label>
-      <input type="text" name="name" id="nameInput" class="form-control" required>
+      <input type="text" name="name" id="nameInput" class="form-control" required="required">
     </div>
 
     <div class="mb-3">
       <label for="email" class="form-label">Endereço de e-mail</label>
-      <input type="email" name="email" id="emailInput" class="form-control" required>
+      <input type="email" name="email" id="emailInput" class="form-control" required="required">
     </div>
 
     <div class="mb-3">
       <label for="phone" class="form-label">Telefone ou Telemóvel</label>
-      <input type="tel" name="phone" id="phoneInput" class="form-control" required>
+      <input type="tel" name="phone" id="phoneInput" class="form-control" required="required">
     </div>
 
     <button type="submit" class="btn btn-primary">

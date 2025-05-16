@@ -22,10 +22,10 @@
         <td>{{ contact.email }}</td>
         <td>{{ contact.phone }}</td>
         <td>
-          <a href="{{ url_for('edit', id=contact.id) }}" class="btn btn-sm btn-warning">
+          <a href="{{ url_for('update', id=contact.id) }}" class="btn btn-sm btn-warning">
             <i class="bi bi-pencil"></i> Editar
           </a>
-          <form action="{{ url_for('delete', id=contact.id) }}" method="POST" style="display:inline;">
+          <form action="{{ url_for('delete', id=contact.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja eliminar este contacto?');">
             <button type="submit" class="btn btn-sm btn-danger">
               <i class="bi bi-trash"></i> Eliminar
             </button>

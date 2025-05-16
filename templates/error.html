@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Ocorreu um erro{% endblock %}
+
+{% block content %}
+
+  <h2 class="mb-4"><i class="bi bi-exclamation-triangle"></i> Ocorreu um erro: {{ error_code }}</h2>
+
+  <a href="/" class="btn btn-primary btn-lg">Voltar à lista de contactos</a>
+
+{% endblock %}
