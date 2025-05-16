@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar Contacto{% endblock %}
+
+{% block content %}
+
+  <h2 class="mb-4"><i class="bi bi-person-add"></i> Atualizar Contacto</h2>
+
+  <form action="{{ url_for('update', id=contact.id) }}" method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nome</label>
+      <input type="text" name="name" id="nameInput" class="form-control" value="{{ contact.name }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Endereço de e-mail</label>
+      <input type="email" name="email" id="emailInput" class="form-control" value="{{ contact.email }}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Telefone ou Telemóvel</label>
+      <input type="tel" name="phone" id="phoneInput" class="form-control" value="{{ contact.phone }}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-floppy"></i> Atualizar Contacto
+    </button>
+  </form>
+
+{% endblock %}

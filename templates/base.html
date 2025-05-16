@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %} - ContactsApp</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/custom.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a href="{{ url_for('index') }}" class="navbar-brand">
+        <img src="/img/logo.png" alt="ContactsApp" width="300" />
+      </a>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a href="{{ url_for('index') }}" class="nav-link">Listar Contactos</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <li>
+            <a href="{{ url_for('create') }}" class="btn btn-primary"><i class="bi bi-person-add"></i> Adicionar Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container pt-4">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
