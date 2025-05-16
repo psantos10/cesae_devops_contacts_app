@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks:
+      - cesae_net2
+
+  db_migrate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+    networks:
+      - cesae_net2
+    command: "flask db upgrade"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    scale: 3
+    environment:
+      - DB_HOST=db
+    depends_on:
+      - db
+      - db_migrate
+    networks:
+      - cesae_net2
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docker/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+    networks:
+      - cesae_net2
+
+volumes:
+  pg-data:
+
+networks:
+  cesae_net2:
+    driver: bridge
