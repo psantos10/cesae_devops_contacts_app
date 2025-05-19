@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: contacts-app
+  labels:
+    project: cesae-contacts-app
+spec:
+  containers:
+    - name: contacts-app-container
+      image: psantos11/cesae-contacts-app:2.3.0
+      ports:
+        - containerPort: 5000
