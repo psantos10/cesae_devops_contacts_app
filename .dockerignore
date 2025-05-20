@@ -6,3 +6,6 @@ __pycache__
 instance/
 
 data/
+
+docker/
+k8s/
