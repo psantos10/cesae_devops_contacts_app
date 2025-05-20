@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cesae-contacts-app-config
+data:
+  DB_HOST: cesae-contacts-db
+  DB_USER: postgres
+  DB_NAME: cesae_contacts_app

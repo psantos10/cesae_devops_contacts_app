@@ -26,9 +26,16 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_PASSWORD
-              value: "VeryComplex123!"
+              valueFrom:
+                secretKeyRef:
+                  name: cesae-contacts-app-secret
+                  key: DB_PASSWORD
             - name: POSTGRES_DB
-              value: "cesae_contacts_app"
+              valueFrom:
+                configMapKeyRef:
+                  name: cesae-contacts-app-config
+                  key: DB_NAME
+
           volumeMounts:
             - name: cesae-contacts-db-storage
               mountPath: "/var/lib/postgresql/data"
@@ -70,15 +77,15 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: cesae-contacts-app-config
           env:
-            - name: DB_HOST
-              value: "cesae-contacts-db"
-            - name: DB_USER
-              value: "postgres"
             - name: DB_PASSWORD
-              value: "VeryComplex123!"
-            - name: DB_NAME
-              value: "cesae_contacts_app"
+              valueFrom:
+                secretKeyRef:
+                  name: cesae-contacts-app-secret
+                  key: DB_PASSWORD
           resources:
             requests:
               cpu: "100m"
