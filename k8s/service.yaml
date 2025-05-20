@@ -1,12 +1,23 @@
 kind: Service
 apiVersion: v1
 metadata:
+  name: cesae-contacts-db
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+  selector:
+    project: cesae-contacts-db
+---
+kind: Service
+apiVersion: v1
+metadata:
   name: svc-lb
 spec:
   type: LoadBalancer
   ports:
     - port: 8080
-      targetPort: 80
+      targetPort: 5000
       protocol: TCP
   selector:
     project: cesae-contacts-app

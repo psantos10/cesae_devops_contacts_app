@@ -1,6 +1,52 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
+  name: cesae-contacts-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: cesae-contacts-db
+  minReadySeconds: 20
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        project: cesae-contacts-db
+    spec:
+      containers:
+        - name: cesae-contacts-db-container
+          image: postgres:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "VeryComplex123!"
+            - name: POSTGRES_DB
+              value: "cesae_contacts_app"
+          volumeMounts:
+            - name: cesae-contacts-db-storage
+              mountPath: "/var/lib/postgresql/data"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+      volumes:
+        - name: cesae-contacts-db-storage
+          persistentVolumeClaim:
+            claimName: cesae-contacts-db-pvc
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
   name: contacts-app-deployment
 spec:
   replicas: 5
@@ -20,10 +66,19 @@ spec:
     spec:
       containers:
         - name: contacts-app-container
-          image: psantos11/cesae-contacts-app:2.3.1
+          image: psantos11/cesae-contacts-app:2.3.3
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
+          env:
+            - name: DB_HOST
+              value: "cesae-contacts-db"
+            - name: DB_USER
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "VeryComplex123!"
+            - name: DB_NAME
+              value: "cesae_contacts_app"
           resources:
             requests:
               cpu: "100m"
